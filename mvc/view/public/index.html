@@ -1,2 +1,30 @@
 <h1>hola</h1>
 <p>pagina index</p>
+
+<table>
+    <th>Sensor 1</th>
+    <th>Sensor 2</th>
+    <th>Sensor 3</th>
+    <tr>
+        <td id="aaa">{{sensor1}}</td>
+        <td id="bbb">{{sensor2}}</td>
+        <td id="ccc">{{sensor2}}</td>
+    </tr>
+
+</table>
+
+<script>
+    window.setInterval(function (){
+        var request = new XMLHttpRequest();
+        request.open('GET', 'https://awi4-7926c-default-rtdb.firebaseio.com/sensores.json');
+        request.onload = () =>{
+            const response = request.responseText;
+            console.log(response);
+            const json = JSON.parse(response);
+            document.getElementById('aaa').innerHTML = json["aaaa"].temperatura;
+
+        };
+        request.send();
+
+    }, 1000);
+</script>
